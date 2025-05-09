@@ -1,0 +1,90 @@
+.formHolder {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formContainer {
+  padding: 3.2rem 9.6rem 4.8rem;
+  box-shadow: 0 1rem 1.8rem rgba(0, 0, 0, 0.075);
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formTitlesHolder {
+  text-align: center;
+}
+
+.formTitle {
+  font-size: 3rem;
+  letter-spacing: -0.5px;
+  padding: 0.4rem;
+}
+
+.subTitle {
+  font-size: 1.6rem;
+  color: var(--text-color-secondary);
+  font-weight: 300;
+  padding-bottom: 3.2rem;
+}
+
+.formInputContainer {
+  padding: 1.1rem 1.5rem;
+  width: 100%;
+  border: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+}
+.form {
+  width: 100%;
+}
+
+.label {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+  font-family: inherit;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.formInput {
+  font-family: inherit;
+  font-size: 1.6rem;
+  border: none;
+  outline: none;
+}
+
+.formInput:active {
+  border: 0;
+}
+
+.btn {
+  font-family: inherit;
+  padding: 1.8rem 1.5rem;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btnPrimary {
+  background-color: var(--text-color-primary);
+  color: #fff;
+}
+
+.btn:visited {
+}
+
+.btn:hover {
+  background-color: #fff;
+  color: var(--text-color-primary);
+  box-shadow: inset 0 0 0 1px var(--text-color-primary);
+}
+
+.btnFullWidth {
+  width: 100%;
+  border: none;
+}

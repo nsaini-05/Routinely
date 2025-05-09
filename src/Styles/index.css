@@ -1,0 +1,24 @@
+:root {
+  --background-color: #ffffff;
+  --text-color-primary: #111111;
+  --text-color-secondary: #757575;
+  --border-light: #e0e0e0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  font-size: 1.6rem;
+  background-color: var(--background-color);
+  color: var(--text-color-primary);
+  height: 100vh;
+}
