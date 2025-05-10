@@ -1,7 +1,10 @@
-import styles from "./SignUpForm.module.css";
 import { useState } from "react";
 import { signUp } from "../../../services/authService";
+import styles from "./SignUpForm.module.css";
+import toast from "react-hot-toast";
+import { asyncWrapper } from "../../../utils/asyncHelperUtils";
 function SignUpForm() {
+  const [loading, setLoading] = useState(false);
   const [formState, setFormState] = useState({
     fullName: "",
     email: "",
@@ -12,9 +15,12 @@ function SignUpForm() {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
-    signUp(formState);
+    const { data, error } = await asyncWrapper(() => signUp(formState));
+    if (error) toast.error(error);
+    setLoading(false);
   };
 
   return (
@@ -40,6 +46,7 @@ function SignUpForm() {
               name="fullName"
               id="fullName"
               value={formState.fullName}
+              disabled={loading}
             ></input>
           </div>
           <div className={styles.formInputContainer}>
@@ -54,6 +61,7 @@ function SignUpForm() {
               name="email"
               id="email"
               value={formState.email}
+              disabled={loading}
             ></input>
           </div>
           <div className={styles.formInputContainer}>
@@ -68,13 +76,15 @@ function SignUpForm() {
               name="password"
               value={formState.password}
               id="password"
+              disabled={loading}
             ></input>
           </div>
           <button
             className={`${styles.btn} ${styles.btnPrimary} ${styles.btnFullWidth}`}
             type="submit"
+            disabled={loading}
           >
-            Create An Account
+            {loading ? "Loading..." : "Create An Account"}
           </button>
         </form>
       </div>

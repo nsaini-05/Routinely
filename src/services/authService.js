@@ -11,5 +11,7 @@ export const signUp = async ({ fullName, email, password }) => {
     },
   });
 
+  if (error) throw new Error(error);
+
   return { data, error };
 };
