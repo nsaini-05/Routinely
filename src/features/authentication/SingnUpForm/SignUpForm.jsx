@@ -1,5 +1,6 @@
 import styles from "./SignUpForm.module.css";
 import { useState } from "react";
+import { signUp } from "../../../services/authService";
 function SignUpForm() {
   const [formState, setFormState] = useState({
     fullName: "",
@@ -13,7 +14,7 @@ function SignUpForm() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log(formState);
+    signUp(formState);
   };
 
   return (

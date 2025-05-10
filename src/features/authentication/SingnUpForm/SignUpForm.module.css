@@ -8,7 +8,6 @@
 .formContainer {
   padding: 3.2rem 9.6rem 4.8rem;
   box-shadow: 0 1rem 1.8rem rgba(0, 0, 0, 0.075);
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
