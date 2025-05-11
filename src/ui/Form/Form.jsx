@@ -10,6 +10,7 @@ function Form({
   footerMessage,
   furtherLinkText,
   furtherLink,
+  btnText,
 }) {
   const [formState, setFormState] = useState({});
 
@@ -47,6 +48,7 @@ function Form({
                   value={formState[field.name] || ""}
                   disabled={loading}
                   autoComplete="false"
+                  required={true}
                 ></input>
               </div>
             );
@@ -57,7 +59,7 @@ function Form({
             type="submit"
             disabled={loading}
           >
-            {loading ? "Loading..." : "Create An Account"}
+            {loading ? "Loading..." : btnText}
           </button>
         </form>
         <span>

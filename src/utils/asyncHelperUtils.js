@@ -3,6 +3,6 @@ export const asyncWrapper = async (asyncFn) => {
     const { data, error } = await asyncFn();
     return { data, error };
   } catch (error) {
-    return { data: null, error: "Something went Wrong. Try again!" };
+    return { data: null, error: error.message };
   }
 };

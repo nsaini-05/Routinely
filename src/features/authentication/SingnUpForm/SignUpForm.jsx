@@ -43,7 +43,8 @@ function SignUpForm() {
       loading={loading}
       furtherLink={"/login"}
       furtherLinkText={"LOG IN"}
-      footerMessage={"Already a Member?"}
+      footerMessage={"Already a Member? "}
+      btnText={"Create an Account"}
     ></Form>
   );
 }
