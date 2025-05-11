@@ -24,3 +24,9 @@ export const logIn = async ({ email, password }) => {
   if (error) throw new Error(error.message);
   return { data, error: null };
 };
+
+export const getCurrentSession = async () => {
+  const { data, error } = await supabase.auth.getSession();
+  if (error) throw new Error(error.message);
+  return { data, error: null };
+};

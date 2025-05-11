@@ -47,7 +47,6 @@ function Form({
                   id={field.name}
                   value={formState[field.name] || ""}
                   disabled={loading}
-                  autoComplete="off"
                   required={true}
                 ></input>
               </div>

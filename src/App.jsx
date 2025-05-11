@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import { Toaster } from "react-hot-toast";
+import Dashboard from "./pages/Dashboard";
 function App() {
   return (
     <>
@@ -10,6 +11,7 @@ function App() {
           <Route index element={<Navigate to="/signup"></Navigate>}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/dashboard" element={<Dashboard />}></Route>
         </Routes>
       </BrowserRouter>
       <Toaster
