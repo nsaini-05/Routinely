@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { asyncWrapper } from "../../../utils/asyncHelperUtils";
 import Form from "../../../ui/Form/Form";
+import { logIn } from "../../../services/authService";
+import toast from "react-hot-toast";
 
 function LoginForm() {
   const [loading, setLoading] = useState(false);
@@ -18,8 +21,15 @@ function LoginForm() {
     },
   ];
 
-  const handleFormSubmit = (formState) => {
-    console.log(formState);
+  const handleFormSubmit = async (formState) => {
+    const { data, error } = await asyncWrapper(() => logIn(formState));
+
+    if (error) {
+      toast.error(error);
+    } else {
+      console.log(data);
+      //To DO : Set Data and Navigate to other places
+    }
   };
 
   return (
