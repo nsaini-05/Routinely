@@ -12,7 +12,7 @@ export const useCurrentUser = () => {
 
   const getUserInfo = useCallback(async () => {
     const { data } = await asyncWrapper(() => getCurrentSession());
-    if (data.session?.user) {
+    if (data?.session?.user) {
       dispatch(
         setUser({
           isAuthenticated:

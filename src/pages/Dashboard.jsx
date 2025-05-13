@@ -1,10 +1,5 @@
-import ProtectedRoute from "../ui/ProtectedRoute/ProtectedRoute";
 function Dashboard() {
-  return (
-    <ProtectedRoute>
-      <div>Hello from Dashboard</div>
-    </ProtectedRoute>
-  );
+  return <div>Hello from Dashboard</div>;
 }
 
 export default Dashboard;
