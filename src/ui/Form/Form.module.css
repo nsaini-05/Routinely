@@ -34,7 +34,7 @@
 .formInputContainer {
   padding: 1.1rem 1.5rem;
   width: 100%;
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border-color-light);
   display: flex;
   flex-direction: column;
 }

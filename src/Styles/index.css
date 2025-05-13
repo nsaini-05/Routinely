@@ -1,9 +1,24 @@
 :root {
-  --background-color: #ffffff;
+  /* Text colors */
   --text-color-primary: #111111;
   --text-color-secondary: #757575;
-  --border-light: #e0e0e0;
-  --background-color-tint: #f9f9f9;
+  --text-color-inverse: #ffffff;
+
+  /* Backgrounds */
+  --background-main: #ffffff;
+  --background-tint: #f9f9f9;
+  --background-hover: #f0f0f0;
+
+  /* Border */
+  --border-color-light: #e0e0e0;
+  --border-radius-sm: 4px;
+  --border-radius-md: 6px;
+
+  /* Button */
+  --button-bg: var(--background-main);
+  --button-bg-hover: var(--background-hover);
+  --button-text: var(--text-color-primary);
+  --button-border: var(--border-color-light);
 }
 
 * {
@@ -19,7 +34,7 @@ html {
 body {
   font-family: "Nunito", sans-serif;
   font-size: 1.6rem;
-  background-color: var(--background-color);
+  background-color: var(--background-main);
   color: var(--text-color-primary);
   height: 100vh;
 }
