@@ -1,26 +1,36 @@
 import { useEffect, useState } from "react";
 import { asyncWrapper } from "../utils/asyncHelperUtils";
 import { getCurrentSession } from "../services/authService";
-import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setUser } from "../features/authentication/authSlice";
 import { useCallback } from "react";
-
 export const useCurrentUser = () => {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [isSessionLoading, setIsSessionLoading] = useState(true);
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isAuthenticated, userInfo } = useSelector((store) => store.auth);
+  const [isSessionLoading, setIsSessionLoading] = useState(false);
+
   const getUserInfo = useCallback(async () => {
-    const { data, error } = await asyncWrapper(() => getCurrentSession());
-    setIsSessionLoading(false);
-    if (error || !data.session) {
-      navigate("/login", { replace: true });
-    } else {
-      setCurrentUser(data.session.user);
+    const { data } = await asyncWrapper(() => getCurrentSession());
+    if (data.session?.user) {
+      dispatch(
+        setUser({
+          isAuthenticated:
+            data.session.user.aud == "authenticated" ? true : false,
+          userInfo: { ...data.session.user.user_metadata },
+        })
+      );
     }
-  }, [navigate]);
+
+    setIsSessionLoading(false);
+  }, [dispatch]);
 
   useEffect(() => {
-    getUserInfo();
-  }, []);
+    if (!userInfo && !isAuthenticated) {
+      setIsSessionLoading(true);
+      getUserInfo();
+    }
+  }, [userInfo, isAuthenticated, getUserInfo]);
 
-  return { currentUser, isSessionLoading };
+  return { userInfo, isSessionLoading };
 };
