@@ -1,5 +1,13 @@
+import HabitsTable from "../features/habits/HabitsTable/HabitsTable";
 function Dashboard() {
-  return <div>Hello from Dashboard</div>;
+  return (
+    <div>
+      <HabitsTable>
+        <HabitsTable.Header />
+        <HabitsTable.Body />
+      </HabitsTable>
+    </div>
+  );
 }
 
 export default Dashboard;

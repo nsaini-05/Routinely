@@ -10,7 +10,9 @@ function AppLayout() {
         <Sidebar />
         <div>
           <Header />
-          <Outlet />
+          <div className={styles.center}>
+            <Outlet />
+          </div>
         </div>
       </div>
     </ProtectedRoute>

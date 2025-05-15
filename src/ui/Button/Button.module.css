@@ -1,0 +1,14 @@
+.primary {
+  color: var(--btn-primary-text);
+  background-color: var(--btn-primary-background);
+  font-family: inherit;
+  padding: 1rem 1.5rem;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.primary:hover {
+  background-color: var(--btn-primary-hover-background);
+  color: var(--btn-primary-hover-text);
+}

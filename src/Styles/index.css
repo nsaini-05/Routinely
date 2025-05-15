@@ -14,11 +14,10 @@
   --border-radius-sm: 4px;
   --border-radius-md: 6px;
 
-  /* Button */
-  --button-bg: var(--background-main);
-  --button-bg-hover: var(--background-hover);
-  --button-text: var(--text-color-primary);
-  --button-border: var(--border-color-light);
+  --btn-primary-text: #fff;
+  --btn-primary-background: var(--text-color-primary);
+  --btn-primary-hover-background: #fff;
+  --btn-primary-hover-text: var(--text-color-primary);
 }
 
 * {
