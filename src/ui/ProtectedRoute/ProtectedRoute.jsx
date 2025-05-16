@@ -11,7 +11,9 @@ function ProtectedRoute({ children }) {
     if (!userInfo) navigate("/login");
   }, [userInfo, navigate]);
 
-  return isSessionLoading ? <Loader /> : <div>{children}</div>;
+  if (isSessionLoading) return <Loader />;
+
+  return userInfo && <div>{children}</div>;
 }
 
 export default ProtectedRoute;

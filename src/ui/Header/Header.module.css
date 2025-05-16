@@ -1,5 +1,4 @@
 .header {
-  border-bottom: 1px solid var(--text-color-secondary);
   padding: 1.2rem;
   border-bottom: 1px solid var(--border-color-light);
 }

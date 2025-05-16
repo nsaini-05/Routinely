@@ -1,0 +1,56 @@
+.row {
+  display: grid;
+  grid-template-columns: 6rem 20.6rem 1fr 8rem;
+  border-bottom: 1px solid var(--border-color-light);
+}
+
+.actionsColumn {
+  border-right: 1px solid var(--border-color-light);
+}
+
+.columnTitle {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 1.2rem 0 1.2rem 1.6rem;
+}
+
+.monthsContainer {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: repeat(12, 1fr);
+  border-left: 1px solid var(--border-color-light);
+  border-right: 1px solid var(--border-color-light);
+}
+
+.monthsTitle {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+  /* padding: 0.6rem 1rem; */
+  padding: 1rem 0 1.1rem 1.6rem;
+}
+
+.datesContainer {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: repeat(31, 1fr);
+  border-left: 1px solid var(--border-color-light);
+  border-right: 1px solid var(--border-color-light);
+}
+
+.box {
+  font-size: 1.1rem;
+}
+
+.activeMonth {
+  background: var(--button-background);
+}
+
+.monthsTitle:hover {
+  cursor: pointer;
+}
