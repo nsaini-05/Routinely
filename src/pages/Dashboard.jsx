@@ -4,7 +4,7 @@ function Dashboard() {
     <div>
       <HabitsTable>
         <HabitsTable.Header />
-        {/* <HabitsTable.Body /> */}
+        <HabitsTable.Body />
       </HabitsTable>
     </div>
   );
