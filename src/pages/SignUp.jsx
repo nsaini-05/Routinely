@@ -11,9 +11,9 @@ function SignUp() {
     if (userInfo) navigate("/dashboard");
   }, [navigate, userInfo]);
 
-  return isSessionLoading ? (
-    <Loader />
-  ) : (
+  if (isSessionLoading && !userInfo) return <Loader />;
+
+  return (
     <div>
       <SignUpForm />
     </div>

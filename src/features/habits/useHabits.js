@@ -25,7 +25,7 @@ export const useHabits = () => {
 
   useEffect(() => {
     getHabits();
-  }, []);
+  }, [monthId]);
 
   return { habitLogs, habitsLoading };
 };

@@ -8,12 +8,12 @@ function ProtectedRoute({ children }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!userInfo) navigate("/login");
-  }, [userInfo, navigate]);
+    if (!userInfo && !isSessionLoading) navigate("/login");
+  }, [userInfo, navigate, isSessionLoading]);
 
   if (isSessionLoading) return <Loader />;
 
-  return userInfo && <div>{children}</div>;
+  return <div>{children}</div>;
 }
 
 export default ProtectedRoute;

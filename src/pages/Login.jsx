@@ -6,18 +6,19 @@ import { useNavigate } from "react-router";
 function Login() {
   const navigate = useNavigate();
   const { isSessionLoading, userInfo } = useCurrentUser();
+
   useEffect(() => {
     if (userInfo) {
       navigate("/dashboard");
     }
   }, [userInfo, navigate]);
 
-  return !isSessionLoading ? (
+  if (isSessionLoading) return <Loader />;
+
+  return (
     <div>
       <LoginForm />
     </div>
-  ) : (
-    <Loader />
   );
 }
 

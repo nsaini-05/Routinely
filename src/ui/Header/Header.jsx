@@ -3,7 +3,25 @@ import Row from "../Row/Row";
 import { LuPanelLeftClose, LuPanelRightClose } from "react-icons/lu";
 import Button from "../Button/Button";
 import UserAvatar from "../UserAvatar/UserAvatar";
+import { logoutUser as logoutUserApi } from "../../services/authService";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
+import { setUser } from "../../features/authentication/authSlice";
 function Header() {
+  const dispatch = useDispatch();
+  const logoutUser = async () => {
+    const { error } = await logoutUserApi();
+    if (error) {
+      toast.error("error");
+    } else {
+      dispatch(
+        setUser({
+          isAuthenticated: false,
+          userInfo: null,
+        })
+      );
+    }
+  };
   return (
     <div className={styles.header}>
       <Row justifyContent="space-between" alignItems="center">
@@ -17,7 +35,7 @@ function Header() {
         </Row>
         <Row direction="row" gap="2.4rem" justifyContent="flex-start">
           <UserAvatar />
-          <Button type={"primary"} label="logout"></Button>
+          <Button type={"primary"} label="logout" onClick={logoutUser}></Button>
         </Row>
       </Row>
     </div>

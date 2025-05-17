@@ -8,7 +8,7 @@ import { useCallback } from "react";
 export const useCurrentUser = () => {
   const dispatch = useDispatch();
   const { isAuthenticated, userInfo } = useSelector((store) => store.auth);
-  const [isSessionLoading, setIsSessionLoading] = useState(false);
+  const [isSessionLoading, setIsSessionLoading] = useState(true);
 
   const getUserInfo = useCallback(async () => {
     const { data } = await asyncWrapper(() => getCurrentSession());
