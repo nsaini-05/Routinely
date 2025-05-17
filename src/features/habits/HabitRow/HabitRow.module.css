@@ -66,8 +66,6 @@
 
 .box {
   font-size: 1.1rem;
-  opacity: 0;
-  transform: translateY(10px);
   display: flex;
   align-items: center;
   justify-content: center;

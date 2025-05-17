@@ -1,26 +1,16 @@
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import HabitRow from "../HabitRow/HabitRow";
 import styles from "./TableBody.module.css";
+import { useHabits } from "../useHabits";
 function TableBody() {
-  const [habitsList, setHabitsList] = useState([
-    {
-      name: "Habbit1",
-      dates: [2, 5],
-      id: 1,
-    },
-    {
-      name: "Habbit1",
-      dates: [2, 5],
-      id: 3,
-    },
-  ]);
+  const { habits, habitsLoading } = useHabits();
+  console.log(habits);
 
   return (
     <>
-      {habitsList?.length > 0 && (
+      {habits?.length > 0 && (
         <div className={styles.habitsContainer}>
-          {habitsList.map((habit) => {
+          {habits.map((habit) => {
             return <HabitRow habitData={habit} key={habit.id} />;
           })}
         </div>
