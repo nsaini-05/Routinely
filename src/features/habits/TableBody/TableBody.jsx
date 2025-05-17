@@ -3,15 +3,14 @@ import HabitRow from "../HabitRow/HabitRow";
 import styles from "./TableBody.module.css";
 import { useHabits } from "../useHabits";
 function TableBody() {
-  const { habits, habitsLoading } = useHabits();
-  console.log(habits);
+  const { habitLogs, habitsLoading } = useHabits();
 
   return (
     <>
-      {habits?.length > 0 && (
+      {habitLogs?.length > 0 && (
         <div className={styles.habitsContainer}>
-          {habits.map((habit) => {
-            return <HabitRow habitData={habit} key={habit.id} />;
+          {habitLogs.map((habitLog) => {
+            return <HabitRow habitData={habitLog} key={habitLog.id} />;
           })}
         </div>
       )}

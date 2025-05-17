@@ -19,16 +19,16 @@ function HabitRow({ habitData }) {
         }}
       >
         {Array.from({ length: daysInMonth }, (_, i) => (
-          <div className={`box ${styles.checkbox}`}>
-            {/* <Row>
+          <div className={`box ${styles.checkbox}`} key={i}>
+            <Row>
               {habitData.dates.includes(i) ? <IoMdCheckmark size={20} /> : ""}
-            </Row> */}
+            </Row>
           </div>
         ))}
       </div>
-      {/* {habitData.dates.length > 0 && (
+      {habitData.dates.length > 0 && (
         <div className={styles.total}>{habitData.dates.length}</div>
-      )} */}
+      )}
     </div>
   );
 }

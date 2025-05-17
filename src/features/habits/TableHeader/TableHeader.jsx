@@ -56,7 +56,7 @@ function TableHeader() {
           </div>
         ))}
       </div>
-      <div className={styles.columnTitle}>Total</div>
+      <div className={styles.columnTitle}>Streak</div>
     </div>
   );
 }
