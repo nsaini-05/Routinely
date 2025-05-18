@@ -3,9 +3,10 @@ import { IoMdCheckmark } from "react-icons/io";
 import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md";
 import { useSelector } from "react-redux";
 import Row from "../../../ui/Row/Row";
-function HabitRow({ habitData }) {
+function HabitRow({ habitData, toggleHabit }) {
+  console.log(toggleHabit);
   const {
-    selectedMonth: { monthName: selectedMonthName, numberOfDays: daysInMonth },
+    selectedMonth: { numberOfDays: daysInMonth },
   } = useSelector((store) => store.displayControls);
 
   return (
@@ -19,7 +20,11 @@ function HabitRow({ habitData }) {
         }}
       >
         {Array.from({ length: daysInMonth }, (_, i) => (
-          <div className={`box ${styles.checkbox}`} key={i}>
+          <div
+            className={`box ${styles.checkbox}`}
+            key={i}
+            onClick={() => toggleHabit(habitData.dates.includes(i))}
+          >
             <Row>
               {habitData.dates.includes(i) ? <IoMdCheckmark size={20} /> : ""}
             </Row>

@@ -34,3 +34,7 @@ export const getHabits = async (userId, monthId) => {
 
   return { data: Object.values(habitLogs), error: null };
 };
+
+export const toggleHabit = async (toUpdate) => {
+  let data, error;
+};
