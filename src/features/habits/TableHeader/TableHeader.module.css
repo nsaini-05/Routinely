@@ -71,3 +71,5 @@
     transform: translateY(0);
   }
 }
+
+/* style={{ animationDelay: `${i * 30}ms` }} */

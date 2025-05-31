@@ -47,11 +47,7 @@ function TableHeader() {
         key={selectedMonthName}
       >
         {Array.from({ length: daysInMonth }, (_, i) => (
-          <div
-            key={i}
-            className={styles.box}
-            style={{ animationDelay: `${i * 30}ms` }}
-          >
+          <div key={i} className={styles.box}>
             {i + 1}
           </div>
         ))}

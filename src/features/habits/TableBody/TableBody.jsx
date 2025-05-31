@@ -6,7 +6,7 @@ import { useContext } from "react";
 
 function TableBody() {
   const { habitLogs, habitsLoading, toggleHabit } = useContext(TableContext);
-  if (habitsLoading) return <Loader height="40rem" />;
+  if (habitsLoading && !habitLogs.length) return <Loader height="40rem" />;
   return (
     <>
       {habitLogs?.length > 0 && (

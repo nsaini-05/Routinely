@@ -3,29 +3,56 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { getHabits as getHabitsApi } from "../../services/habitsService";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
+import { toggleHabit as toggleHabitApi } from "../../services/habitsService";
+
 export const useHabits = () => {
-  const {
-    userInfo: { sub: userId },
-  } = useSelector((store) => store.auth);
-  const {
-    selectedMonth: { monthId },
-  } = useSelector((store) => store.displayControls);
+  const { userInfo } = useSelector((store) => store.auth);
+  const { selectedMonth } = useSelector((store) => store.displayControls);
 
   const [habitLogs, setHabitsLogs] = useState([]);
   const [habitsLoading, setHabitsLoading] = useState(false);
 
-  const getHabits = async () => {
-    setHabitsLoading(true);
+  const toggleHabit = async (month, date, habitData, alreadyExists) => {
     const { data, error } = await asyncWrapper(() =>
-      getHabitsApi(userId, monthId)
+      toggleHabitApi(month, date, habitData, alreadyExists)
     );
-    if (data) setHabitsLogs(data);
-    setHabitsLoading(false);
+    if (error) {
+      toast.error(error);
+    } else {
+      setHabitsLogs([
+        ...habitLogs.map((habitLog) =>
+          habitLog.id === data[0].habitId
+            ? {
+                ...habitLog,
+                dates: !alreadyExists
+                  ? [...habitLog.dates, data[0].dateCompleted]
+                  : habitLog.dates.filter((habitDate) => habitDate !== date),
+              }
+            : habitLog
+        ),
+      ]);
+    }
   };
 
   useEffect(() => {
-    getHabits();
-  }, [monthId]);
+    const getHabits = async () => {
+      if (userInfo?.sub) {
+        setHabitsLoading(true);
+        const { data, error } = await asyncWrapper(() =>
+          getHabitsApi(userInfo.sub, selectedMonth.monthId)
+        );
+        if (error) {
+          toast.error(error);
+        } else {
+          setHabitsLogs(data);
+        }
+        setHabitsLoading(false);
+      }
+    };
 
-  return { habitLogs, habitsLoading };
+    getHabits();
+  }, [selectedMonth.monthId, userInfo?.sub]);
+
+  return { habitLogs, habitsLoading, toggleHabit, selectedMonth };
 };

@@ -27,7 +27,7 @@
 
 .datesContainer .checkbox:hover {
   /* border: 1px solid var(--text-color); */
-  box-shadow: 0 0 0.2rem #fa5252;
+  box-shadow: inset 0 0 0.2rem #fa5252;
 }
 
 .actionButtons {

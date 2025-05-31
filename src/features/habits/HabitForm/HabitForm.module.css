@@ -1,0 +1,48 @@
+.formWrapper {
+  font-family: inherit;
+  display: flex;
+  justify-content: center;
+}
+
+.formCard {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.formRow {
+  display: flex;
+  align-items: center;
+  padding: 1.6rem;
+  justify-content: center;
+}
+
+.formLabel {
+  flex: 0 0 120px; /* fixed width */
+  white-space: nowrap; /* prevents breaking */
+  font-size: 1.6rem;
+}
+
+.formInput {
+  flex: 1;
+  padding: 0.4rem 0.6rem;
+  font-size: 1.6rem;
+  font-family: inherit;
+  border: 1px solid var(--border-color-light);
+  border-radius: 0;
+  background-color: var(--background-main);
+  transition: border-color 0.2s ease;
+}
+
+.formInput:focus {
+  outline: none;
+}
+
+.formRow:nth-child(even) {
+  background-color: #f7f7f7; /* soft light grey */
+}
+
+.formRow:nth-child(odd) {
+  background-color: #ffffff;
+}

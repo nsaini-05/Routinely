@@ -1,19 +1,19 @@
 import LoginForm from "../features/authentication/LoginForm/LoginForm";
-import { useCurrentUser } from "../hooks/useCurrentUser";
 import { useEffect } from "react";
 import Loader from "../ui/Loader/Loader";
 import { useNavigate } from "react-router";
+import { useCurrentSession } from "../hooks/useCurrentSession";
 function Login() {
   const navigate = useNavigate();
-  const { isSessionLoading, userInfo } = useCurrentUser();
+  const { isAuthenticated, userInfo, sessionLoading } = useCurrentSession();
 
   useEffect(() => {
-    if (userInfo) {
-      navigate("/dashboard");
+    if (isAuthenticated && userInfo) {
+      navigate("/dashboard", { replace: true });
     }
-  }, [userInfo, navigate]);
+  }, [userInfo, navigate, isAuthenticated]);
 
-  if (isSessionLoading) return <Loader />;
+  if (sessionLoading) return <Loader />;
 
   return (
     <div>

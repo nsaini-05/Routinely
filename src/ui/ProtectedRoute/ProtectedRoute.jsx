@@ -1,17 +1,18 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useCurrentUser } from "../../hooks/useCurrentUser";
 import Loader from "../Loader/Loader";
-
+import { useCurrentSession } from "../../hooks/useCurrentSession";
 function ProtectedRoute({ children }) {
-  const { userInfo, isSessionLoading } = useCurrentUser();
+  const { isAuthenticated, userInfo, sessionLoading } = useCurrentSession();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!userInfo && !isSessionLoading) navigate("/login");
-  }, [userInfo, navigate, isSessionLoading]);
+    if (!isAuthenticated && !userInfo) {
+      navigate("/login");
+    }
+  }, [userInfo, navigate, isAuthenticated]);
 
-  if (isSessionLoading) return <Loader />;
+  if (sessionLoading) return <Loader />;
 
   return <div>{children}</div>;
 }

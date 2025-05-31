@@ -1,13 +1,11 @@
 import styles from "./HabitRow.module.css";
 import { IoMdCheckmark } from "react-icons/io";
 import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md";
-import { useSelector } from "react-redux";
 import Row from "../../../ui/Row/Row";
+import { useContext } from "react";
+import { TableContext } from "../HabitsTable/HabitsTable";
 function HabitRow({ habitData, toggleHabit }) {
-  console.log(toggleHabit);
-  const {
-    selectedMonth: { numberOfDays: daysInMonth },
-  } = useSelector((store) => store.displayControls);
+  const { selectedMonth } = useContext(TableContext);
 
   return (
     <div className={styles.row}>
@@ -16,14 +14,21 @@ function HabitRow({ habitData, toggleHabit }) {
       <div
         className={styles.datesContainer}
         style={{
-          gridTemplateColumns: `repeat(${daysInMonth}, 1fr)`,
+          gridTemplateColumns: `repeat(${selectedMonth.numberOfDays}, 1fr)`,
         }}
       >
-        {Array.from({ length: daysInMonth }, (_, i) => (
+        {Array.from({ length: selectedMonth.numberOfDays }, (_, i) => (
           <div
             className={`box ${styles.checkbox}`}
             key={i}
-            onClick={() => toggleHabit(habitData.dates.includes(i))}
+            onClick={() =>
+              toggleHabit(
+                selectedMonth.monthId,
+                i,
+                habitData,
+                habitData.dates.includes(i)
+              )
+            }
           >
             <Row>
               {habitData.dates.includes(i) ? <IoMdCheckmark size={20} /> : ""}

@@ -6,20 +6,15 @@ import UserAvatar from "../UserAvatar/UserAvatar";
 import { logoutUser as logoutUserApi } from "../../services/authService";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
-import { setUser } from "../../features/authentication/authSlice";
+import { clearUser } from "../../features/authentication/authSlice";
 function Header() {
   const dispatch = useDispatch();
   const logoutUser = async () => {
     const { error } = await logoutUserApi();
     if (error) {
-      toast.error("error");
+      toast.error(error.message);
     } else {
-      dispatch(
-        setUser({
-          isAuthenticated: false,
-          userInfo: null,
-        })
-      );
+      dispatch(clearUser());
     }
   };
   return (

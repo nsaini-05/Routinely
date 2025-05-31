@@ -1,17 +1,19 @@
 import SignUpForm from "../features/authentication/SingnUpForm/SignUpForm";
-import { useCurrentUser } from "../hooks/useCurrentUser";
+import { useCurrentSession } from "../hooks/useCurrentSession";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import Loader from "../ui/Loader/Loader";
 function SignUp() {
-  const { userInfo, isSessionLoading } = useCurrentUser();
   const navigate = useNavigate();
+  const { isAuthenticated, userInfo, sessionLoading } = useCurrentSession();
 
   useEffect(() => {
-    if (userInfo) navigate("/dashboard");
-  }, [navigate, userInfo]);
+    if (isAuthenticated && userInfo) {
+      navigate("/dashboard", { replace: true });
+    }
+  }, [userInfo, navigate, isAuthenticated]);
 
-  if (isSessionLoading && !userInfo) return <Loader />;
+  if (sessionLoading) return <Loader />;
 
   return (
     <div>

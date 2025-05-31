@@ -13,3 +13,21 @@
   background-color: var(--btn-primary-hover-background);
   color: var(--btn-primary-hover-text);
 }
+
+.secondary {
+  color: var(--btn-secondary-text, #333);
+  background-color: var(--btn-secondary-background, transparent);
+  font-family: inherit;
+  padding: 1rem 1.5rem;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1px solid var(--btn-secondary-border, #ccc);
+  transition: all 150ms ease-in-out;
+}
+
+.secondary:hover {
+  background-color: var(--btn-secondary-hover-background, #f2f2f2);
+  color: var(--btn-secondary-hover-text, #000);
+  border-color: var(--btn-secondary-hover-border, #999);
+}

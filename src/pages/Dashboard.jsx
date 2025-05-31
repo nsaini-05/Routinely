@@ -5,6 +5,7 @@ function Dashboard() {
       <HabitsTable>
         <HabitsTable.Header />
         <HabitsTable.Body />
+        <HabitsTable.Footer />
       </HabitsTable>
     </div>
   );
