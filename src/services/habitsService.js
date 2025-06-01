@@ -10,7 +10,7 @@ export const getHabits = async (userId, monthId) => {
       habitId,
       month,
       createdBy,
-      dateCompleted
+      dateCompleted 
     )
   `
     )
@@ -26,6 +26,7 @@ export const getHabits = async (userId, monthId) => {
           dates: habit.habitData.map((habitLog) => habitLog.dateCompleted),
           id: habit.id,
           createdBy: habit.createdBy,
+          createdMonth: habit.createdMonth,
         };
       } else {
         // habitLogs[habit.id].dates.push(habitLog.dateCompleted);
@@ -74,12 +75,36 @@ export const getHabitById = async (habitId, date, month, userId) => {
   return { selectedHabitLogs, error };
 };
 
-export const deleteHabitById = async (habitId, date, month, userId) => {
-  const { error } = await supabase
+export const deleteHabitById = async (habitId, month, userId) => {
+  const { error: deleteLogError } = await supabase
     .from("habits_logs")
     .delete()
     .eq("habitId", habitId)
-    .eq("dateCompleted", date)
     .eq("month", month)
     .eq("createdBy", userId);
+
+  if (deleteLogError) throw new Error(deleteLogError.message);
+
+  const { error: deleteHabitError } = await supabase
+    .from("habits")
+    .delete()
+    .eq("id", habitId)
+    .eq("createdMonth", month)
+    .eq("createdBy", userId);
+
+  if (deleteHabitError) throw new Error(deleteHabitError.message);
+
+  return { data: month, error: null };
+};
+
+export const createNewHabit = async (habitData) => {
+  const { data, error } = await supabase
+    .from("habits")
+    .insert([{ ...habitData }])
+    .select();
+
+  if (error)
+    throw new Error(error.message || "Something Went wrong. Try Again!!");
+
+  return { data, error: null };
 };

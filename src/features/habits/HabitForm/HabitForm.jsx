@@ -2,12 +2,35 @@ import { useState } from "react";
 import styles from "./HabitForm.module.css";
 import Button from "../../../ui/Button/Button";
 import Row from "../../../ui/Row/Row";
+import { useSelector } from "react-redux";
+import { useCreateHabits } from "../useCreateHabits";
+import Loader from "../../../ui/Loader/Loader";
 
-function HabitForm() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-  });
+function HabitForm({ closeParentModal, habitData = null }) {
+  const { inserting, createNewHabit } = useCreateHabits();
+  const { userInfo } = useSelector((store) => store.auth);
+  const { selectedMonth } = useSelector((store) => store.displayControls);
+
+  const isUpdate = habitData ? true : false;
+  console.log(habitData);
+
+  const [formData, setFormData] = useState(() =>
+    isUpdate
+      ? {
+          habitName: habitData.habitName,
+          goalsPerMonth: habitData.goalsPerMonth,
+          rolloverNextMonths: false,
+          createdMonth: habitData.createdMonth,
+          createdBy: habitData.createdBy,
+        }
+      : {
+          habitName: "",
+          goalsPerMonth: 1,
+          rolloverNextMonths: false,
+          createdMonth: selectedMonth.monthId,
+          createdBy: userInfo?.sub || "",
+        }
+  );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,8 +39,12 @@ function HabitForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    createNewHabit(formData);
+    closeParentModal();
+    //RollOver Validation
   };
+
+  if (inserting) return <Loader height="100%" />;
 
   return (
     <div className={styles.formWrapper}>
@@ -47,10 +74,28 @@ function HabitForm() {
             required
           />
         </div>
+
+        {/* <div className={styles.formRow}>
+          <label className={styles.formLabel}>RollOver</label>
+          <select
+            name="rolloverNextMonths"
+            value={formData.rolloverNextMonths}
+            onChange={handleChange}
+            className={styles.formInput}
+          >
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        </div> */}
+
         <div className={styles.formRow}>
           <Row gap={"1.6rem"}>
-            <Button label={"Save"}></Button>
-            <Button label={"Back"} type="secondary"></Button>
+            <Button label={"Save"} type="primary"></Button>
+            <Button
+              label={"Back"}
+              type="secondary"
+              onClick={closeParentModal}
+            ></Button>
           </Row>
         </div>
       </form>

@@ -7,7 +7,13 @@ import { useHabits } from "../useHabits";
 export const TableContext = createContext();
 
 function HabitsTable({ children }) {
-  const { habitLogs, habitsLoading, toggleHabit, selectedMonth } = useHabits();
+  const {
+    habitLogs,
+    habitsLoading,
+    toggleHabit,
+    selectedMonth,
+    setHabitsLogs,
+  } = useHabits();
 
   return (
     <TableContext.Provider
@@ -16,6 +22,7 @@ function HabitsTable({ children }) {
         habitLogs,
         toggleHabit,
         selectedMonth,
+        setHabitsLogs,
       }}
     >
       {children}

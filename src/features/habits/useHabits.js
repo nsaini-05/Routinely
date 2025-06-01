@@ -5,7 +5,6 @@ import { getHabits as getHabitsApi } from "../../services/habitsService";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { toggleHabit as toggleHabitApi } from "../../services/habitsService";
-
 export const useHabits = () => {
   const { userInfo } = useSelector((store) => store.auth);
   const { selectedMonth } = useSelector((store) => store.displayControls);
@@ -50,9 +49,14 @@ export const useHabits = () => {
         setHabitsLoading(false);
       }
     };
-
     getHabits();
-  }, [selectedMonth.monthId, userInfo?.sub]);
+  }, [userInfo?.sub, selectedMonth.monthId]);
 
-  return { habitLogs, habitsLoading, toggleHabit, selectedMonth };
+  return {
+    habitLogs,
+    habitsLoading,
+    toggleHabit,
+    selectedMonth,
+    setHabitsLogs,
+  };
 };

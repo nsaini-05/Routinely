@@ -14,7 +14,7 @@ function Window({ children, id, title }) {
   return currentWindow === id
     ? createPortal(
         <Dialog title={title} onClose={closeWindow}>
-          {children}
+          {cloneElement(children, { closeParentModal: closeWindow })}
         </Dialog>,
         document.body
       )

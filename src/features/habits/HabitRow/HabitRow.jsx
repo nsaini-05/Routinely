@@ -4,12 +4,32 @@ import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md";
 import Row from "../../../ui/Row/Row";
 import { useContext } from "react";
 import { TableContext } from "../HabitsTable/HabitsTable";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { FiEdit } from "react-icons/fi";
+import { FiDelete } from "react-icons/fi";
+import Modal from "../../../ui/Modal/Modal";
+import HabitForm from "../HabitForm/HabitForm";
 function HabitRow({ habitData, toggleHabit }) {
   const { selectedMonth } = useContext(TableContext);
 
   return (
     <div className={styles.row}>
-      <div className={styles.actionsColumn}></div>
+      <div className={styles.actionsColumn}>
+        <div>
+          <Row direction="row" gap="0.5rem" justifyContent="flex-start">
+            {/* <FiEdit size={20} />
+            <FiDelete size={20} /> */}
+            <Modal>
+              <Modal.Open id="edit-habit-form">
+                <FiEdit size={20} />
+              </Modal.Open>
+              <Modal.Window id="edit-habit-form" title="Update Habit">
+                <HabitForm habitData={habitData} />
+              </Modal.Window>
+            </Modal>
+          </Row>
+        </div>
+      </div>
       <div className={styles.columnTitle}>{habitData.habitName} </div>
       <div
         className={styles.datesContainer}
