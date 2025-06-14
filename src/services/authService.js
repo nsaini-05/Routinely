@@ -30,3 +30,10 @@ export const getCurrentSession = async () => {
   if (error) throw new Error(error.message);
   return { data, error: null };
 };
+
+export const logoutUser = async () => {
+  const { data, error } = await supabase.auth.signOut();
+
+  if (error) throw new Error(error.message);
+  return { data, error: null };
+};

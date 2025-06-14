@@ -3,15 +3,25 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import { Toaster } from "react-hot-toast";
 import Dashboard from "./pages/Dashboard";
+import AppLayout from "./ui/AppLayout/AppLayout";
+import Settings from "./pages/Settings";
+import Stats from "./pages/Stats";
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Navigate to="/signup"></Navigate>}></Route>
+          <Route element={<AppLayout />}>
+            <Route
+              index
+              element={<Navigate to="/dashboard"></Navigate>}
+            ></Route>
+            <Route path="/dashboard" element={<Dashboard />}></Route>
+            <Route path="/stats" element={<Stats />}></Route>
+            <Route path="/settings" element={<Settings />}></Route>
+          </Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/dashboard" element={<Dashboard />}></Route>
         </Routes>
       </BrowserRouter>
       <Toaster
@@ -31,8 +41,9 @@ function App() {
             fontSize: "16px",
             maxWidth: "500px",
             padding: "16px 24px",
-            backgroundColor: "var(--color-grey-0)",
-            color: "var(--color-grey-700)",
+            backgroundColor: "var(--background-main)",
+            color: "var(--text-color-primary)",
+            fontFamily: "inherit",
           },
         }}
       ></Toaster>

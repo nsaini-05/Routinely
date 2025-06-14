@@ -1,8 +1,32 @@
 :root {
-  --background-color: #ffffff;
-  --text-color-primary: #111111;
+  /* Text colors */
+  --text-color-primary: #292929;
   --text-color-secondary: #757575;
-  --border-light: #e0e0e0;
+  --text-color-inverse: #ffffff;
+
+  /* Backgrounds */
+  --background-main: #ffffff;
+  --background-tint: #f9f9f9;
+  --background-hover: #f0f0f0;
+  --background-shade-1: #e0e0e0;
+
+  /* Border */
+  --border-color-light: #e0e0e0;
+  --border-radius-sm: 4px;
+  --border-radius-md: 6px;
+
+  --btn-primary-text: #fff;
+  --btn-primary-background: var(--text-color-primary);
+  --btn-primary-hover-background: #fff;
+  --btn-primary-hover-text: var(--text-color-primary);
+
+  --btn-secondary-text: var(--text-color-primary);
+  --btn-secondary-background: transparent;
+  --btn-secondary-border: var(--border-color-light);
+
+  --btn-secondary-hover-background: var(--background-hover);
+  --btn-secondary-hover-text: var(--text-color-primary);
+  --btn-secondary-hover-border: var(--text-color-secondary);
 }
 
 * {
@@ -18,9 +42,10 @@ html {
 body {
   font-family: "Nunito", sans-serif;
   font-size: 1.6rem;
-  background-color: var(--background-color);
+  background-color: var(--background-main);
   color: var(--text-color-primary);
   height: 100vh;
+  position: relative;
 }
 
 input:-webkit-autofill {
