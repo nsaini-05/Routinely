@@ -17,20 +17,9 @@ export const useDeleteHabits = () => {
       toast.error(error);
     } else {
       if (data === selectedMonth.monthId) {
-        // const newHabit = data[0];
-        // setHabitsLogs((p) => [
-        //   ...p,
-        //   {
-        //     createdBy: newHabit.createdBy,
-        //     dates: [],
-        //     goalsPerMonth: newHabit.goalsPerMonth,
-        //     habitName: newHabit.habitName,
-        //     id: newHabit.id,
-        //   },
-        // ]);
         console.log("Habit Deleted");
       }
-      toast.success("Habit Created Successfully");
+      toast.success("Habit Deleted Successfully");
     }
     setIsDeleting(false);
   };

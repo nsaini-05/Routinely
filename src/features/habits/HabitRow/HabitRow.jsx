@@ -9,26 +9,36 @@ import { FiEdit } from "react-icons/fi";
 import { FiDelete } from "react-icons/fi";
 import Modal from "../../../ui/Modal/Modal";
 import HabitForm from "../HabitForm/HabitForm";
+import { deleteHabitById } from "../../../services/habitsService";
+import { MdEditNote } from "react-icons/md";
 function HabitRow({ habitData, toggleHabit }) {
   const { selectedMonth } = useContext(TableContext);
-
   return (
     <div className={styles.row}>
       <div className={styles.actionsColumn}>
-        <div>
-          <Row direction="row" gap="0.5rem" justifyContent="flex-start">
-            {/* <FiEdit size={20} />
-            <FiDelete size={20} /> */}
+        <Row direction="row" gap="0.2rem" alignItems="center">
+          <div>
             <Modal>
               <Modal.Open id="edit-habit-form">
-                <FiEdit size={20} />
+                <MdEditNote />
               </Modal.Open>
               <Modal.Window id="edit-habit-form" title="Update Habit">
                 <HabitForm habitData={habitData} />
               </Modal.Window>
             </Modal>
-          </Row>
-        </div>
+          </div>
+          <div>
+            <MdDeleteOutline
+              onClick={() =>
+                deleteHabitById(
+                  habitData.id,
+                  habitData.createdMonth,
+                  habitData.createdBy
+                )
+              }
+            />
+          </div>
+        </Row>
       </div>
       <div className={styles.columnTitle}>{habitData.habitName} </div>
       <div
