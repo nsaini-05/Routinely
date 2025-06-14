@@ -3,7 +3,6 @@ import Button from "../Button/Button";
 import Row from "../Row/Row";
 import { useDeleteHabits } from "../../features/habits/useDeleteHabit";
 function ConfirmDialog({ closeParentModal, habitData }) {
-  console.log(habitData);
   const { isDeleting, deleteHabit } = useDeleteHabits();
   const handleDelete = () => {
     deleteHabit(habitData.id, habitData.createdMonth, habitData.createdBy);

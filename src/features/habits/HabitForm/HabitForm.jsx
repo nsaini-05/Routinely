@@ -27,7 +27,7 @@ function HabitForm({ closeParentModal, habitData = null }) {
         }
       : {
           habitName: "",
-          goalsPerMonth: 1,
+          goalsPerMonth: selectedMonth.numberOfDays,
           rolloverNextMonths: false,
           createdMonth: selectedMonth.monthId,
           createdBy: userInfo?.sub || "",
@@ -75,7 +75,7 @@ function HabitForm({ closeParentModal, habitData = null }) {
             onChange={handleChange}
             className={styles.formInput}
             min={1}
-            max={30}
+            max={selectedMonth.numberOfDays}
             required
           />
         </div>

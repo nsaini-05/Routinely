@@ -17,7 +17,6 @@ export const useUpdateHabits = () => {
     } else {
       if (data[0].createdMonth === selectedMonth.monthId) {
         const updatedHabitData = data[0];
-        console.log(habitLogs);
         setHabitsLogs((previousLogs) =>
           previousLogs.map((habitLog) =>
             habitLog.id === data[0].id
