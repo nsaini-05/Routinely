@@ -28,8 +28,6 @@ export const getHabits = async (userId, monthId) => {
           createdBy: habit.createdBy,
           createdMonth: habit.createdMonth,
         };
-      } else {
-        // habitLogs[habit.id].dates.push(habitLog.dateCompleted);
       }
     });
   }
@@ -41,7 +39,7 @@ export const getHabits = async (userId, monthId) => {
 
 export const toggleHabit = async (month, date, habitData, alreadyExists) => {
   if (alreadyExists) {
-    await deleteHabitById(habitData.id, date, month, habitData.createdBy);
+    await deleteHabitLogById(habitData.id, date, month, habitData.createdBy);
     return { data: [{ habitId: habitData.id }], error: null };
   } else {
     const { data, error } = await supabase
@@ -75,24 +73,16 @@ export const getHabitById = async (habitId, date, month, userId) => {
   return { selectedHabitLogs, error };
 };
 
-export const deleteHabitById = async (habitId, month, userId) => {
+export const deleteHabitLogById = async (habitId, date, month, userId) => {
   const { error: deleteLogError } = await supabase
     .from("habits_logs")
     .delete()
     .eq("habitId", habitId)
     .eq("month", month)
-    .eq("createdBy", userId);
+    .eq("createdBy", userId)
+    .eq("dateCompleted", date);
 
   if (deleteLogError) throw new Error(deleteLogError.message);
-
-  const { error: deleteHabitError } = await supabase
-    .from("habits")
-    .delete()
-    .eq("id", habitId)
-    .eq("createdMonth", month)
-    .eq("createdBy", userId);
-
-  if (deleteHabitError) throw new Error(deleteHabitError.message);
 
   return { data: month, error: null };
 };
@@ -122,4 +112,25 @@ export const updateHabit = async (updatedData) => {
     throw new Error(error.message || "Something Went wrong. Try Again!!");
 
   return { data, error: null };
+};
+
+export const deleteHabitById = async (habitId, month, userId) => {
+  const { error: deleteLogError } = await supabase
+    .from("habits_logs")
+    .delete()
+    .eq("habitId", habitId)
+    .eq("month", month)
+    .eq("createdBy", userId);
+
+  if (deleteLogError) throw new Error(deleteLogError.message);
+  const { error: deleteHabitError } = await supabase
+    .from("habits")
+    .delete()
+    .eq("id", habitId)
+    .eq("createdMonth", month)
+    .eq("createdBy", userId);
+
+  if (deleteHabitError) throw new Error(deleteHabitError.message);
+
+  return { data: month, error: null };
 };

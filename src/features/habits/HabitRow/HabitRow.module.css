@@ -33,18 +33,10 @@
   box-shadow: inset 0 0 0.2rem #fa5252;
 }
 
-.actionButtons {
+.actionButton {
+  cursor: pointer;
   display: flex;
   align-items: center;
-  border-right: 1px solid var(--border-color-light);
-  gap: 5px;
-  justify-content: center;
-}
-
-.actionButton {
-  padding: 0.1rem !important;
-  font-size: 1rem;
-  background-color: inherit !important;
 }
 
 .action-icon :hover {

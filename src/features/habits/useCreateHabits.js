@@ -28,6 +28,7 @@ export const useCreateHabits = () => {
             goalsPerMonth: newHabit.goalsPerMonth,
             habitName: newHabit.habitName,
             id: newHabit.id,
+            createdMonth: newHabit.createdMonth,
           },
         ]);
       }

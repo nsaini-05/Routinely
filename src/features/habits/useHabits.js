@@ -12,7 +12,8 @@ export const useHabits = () => {
   const [habitLogs, setHabitsLogs] = useState([]);
   const [habitsLoading, setHabitsLoading] = useState(false);
 
-  const toggleHabit = async (month, date, habitData, alreadyExists) => {
+  const toggleHabit = async (month, date, habitData) => {
+    const alreadyExists = habitData.dates.includes(date);
     const { data, error } = await asyncWrapper(() =>
       toggleHabitApi(month, date, habitData, alreadyExists)
     );

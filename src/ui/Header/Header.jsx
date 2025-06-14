@@ -21,12 +21,12 @@ function Header() {
     <div className={styles.header}>
       <Row justifyContent="space-between" alignItems="center">
         <Row direction="row" gap="1.6rem" justifyContent="flex-start">
-          <span>
+          {/* <span>
             <LuPanelRightClose size={20} />
           </span>
           <span>
             <LuPanelLeftClose size={20} />
-          </span>
+          </span> */}
         </Row>
         <Row direction="row" gap="2.4rem" justifyContent="flex-start">
           <UserAvatar />
