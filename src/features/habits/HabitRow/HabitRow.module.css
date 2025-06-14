@@ -6,7 +6,9 @@
 
 .actionsColumn {
   border-right: 1px solid var(--border-color-light);
-  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .columnTitle {

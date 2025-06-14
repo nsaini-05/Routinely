@@ -108,3 +108,18 @@ export const createNewHabit = async (habitData) => {
 
   return { data, error: null };
 };
+
+export const updateHabit = async (updatedData) => {
+  const { data, error } = await supabase
+    .from("habits")
+    .update({ ...updatedData })
+    .eq("id", updatedData.id)
+    .eq("createdBy", updatedData.createdBy)
+    .eq("createdMonth", updatedData.createdMonth)
+    .select();
+
+  if (error)
+    throw new Error(error.message || "Something Went wrong. Try Again!!");
+
+  return { data, error: null };
+};

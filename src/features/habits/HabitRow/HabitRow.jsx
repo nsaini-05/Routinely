@@ -16,11 +16,11 @@ function HabitRow({ habitData, toggleHabit }) {
   return (
     <div className={styles.row}>
       <div className={styles.actionsColumn}>
-        <Row direction="row" gap="0.2rem" alignItems="center">
+        <Row direction="row" gap="0.2rem">
           <div>
             <Modal>
               <Modal.Open id="edit-habit-form">
-                <MdEditNote />
+                <MdEditNote size={20} />
               </Modal.Open>
               <Modal.Window id="edit-habit-form" title="Update Habit">
                 <HabitForm habitData={habitData} />
@@ -36,6 +36,7 @@ function HabitRow({ habitData, toggleHabit }) {
                   habitData.createdBy
                 )
               }
+              size={20}
             />
           </div>
         </Row>

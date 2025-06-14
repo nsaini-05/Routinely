@@ -5,14 +5,15 @@ import Row from "../../../ui/Row/Row";
 import { useSelector } from "react-redux";
 import { useCreateHabits } from "../useCreateHabits";
 import Loader from "../../../ui/Loader/Loader";
+import { useUpdateHabits } from "../useUpdateHabit";
 
 function HabitForm({ closeParentModal, habitData = null }) {
   const { inserting, createNewHabit } = useCreateHabits();
+  const { isUpdating, updateHabit } = useUpdateHabits();
   const { userInfo } = useSelector((store) => store.auth);
   const { selectedMonth } = useSelector((store) => store.displayControls);
 
   const isUpdate = habitData ? true : false;
-  console.log(habitData);
 
   const [formData, setFormData] = useState(() =>
     isUpdate
@@ -22,6 +23,7 @@ function HabitForm({ closeParentModal, habitData = null }) {
           rolloverNextMonths: false,
           createdMonth: habitData.createdMonth,
           createdBy: habitData.createdBy,
+          id: habitData.id,
         }
       : {
           habitName: "",
@@ -39,12 +41,15 @@ function HabitForm({ closeParentModal, habitData = null }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createNewHabit(formData);
+    if (isUpdate) {
+      updateHabit(formData);
+    } else {
+      createNewHabit(formData);
+    }
     closeParentModal();
-    //RollOver Validation
   };
 
-  if (inserting) return <Loader height="100%" />;
+  if (inserting || isUpdating) return <Loader height="100%" />;
 
   return (
     <div className={styles.formWrapper}>
@@ -75,22 +80,12 @@ function HabitForm({ closeParentModal, habitData = null }) {
           />
         </div>
 
-        {/* <div className={styles.formRow}>
-          <label className={styles.formLabel}>RollOver</label>
-          <select
-            name="rolloverNextMonths"
-            value={formData.rolloverNextMonths}
-            onChange={handleChange}
-            className={styles.formInput}
-          >
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
-        </div> */}
-
         <div className={styles.formRow}>
           <Row gap={"1.6rem"}>
-            <Button label={"Save"} type="primary"></Button>
+            <Button
+              label={isUpdate ? "Update" : "Save"}
+              type="primary"
+            ></Button>
             <Button
               label={"Back"}
               type="secondary"
