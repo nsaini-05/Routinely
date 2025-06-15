@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { setSelectedMonth } from "../../../ui/displaySlice";
 import { useSelector } from "react-redux";
 import Row from "../../../ui/Row/Row";
+import styles from "./ChartView.module.css";
 function ChartView() {
   const { habitLogs } = useHabits();
   const dispatch = useDispatch();
@@ -101,7 +102,7 @@ function ChartView() {
           </BarChart>
         </ResponsiveContainer>
       ) : (
-        <h4>No Habits found for this month</h4>
+        <h4 className={styles.emptyMessage}>No Habits found for this month</h4>
       )}
     </Row>
   );
