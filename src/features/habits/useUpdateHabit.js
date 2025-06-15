@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { useSelector } from "react-redux";
 export const useUpdateHabits = () => {
   const [isUpdating, setIsUpdating] = useState(false);
-  const { setHabitsLogs, habitLogs } = useContext(TableContext);
+  const { setHabitsLogs } = useContext(TableContext);
   const { selectedMonth } = useSelector((store) => store.displayControls);
   const updateHabit = async (habitData) => {
     setIsUpdating(true);

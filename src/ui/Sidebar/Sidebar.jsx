@@ -32,7 +32,7 @@ function Sidebar() {
             </Row>
           }
         />
-        <NavButton
+        {/* <NavButton
           path="/settings"
           title={"Settings"}
           icon={
@@ -40,7 +40,7 @@ function Sidebar() {
               <IoSettingsOutline size={20} />
             </Row>
           }
-        />
+        /> */}
       </Row>
     </div>
   );

@@ -1,5 +1,6 @@
+import ChartView from "../features/charts/ChartView/ChartView";
 function Stats() {
-  return <div>This is my Stats Page</div>;
+  return <ChartView />;
 }
 
 export default Stats;
